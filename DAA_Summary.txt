@@ -1,0 +1,437 @@
+DAA LAB 1 TO 11 - CODE SUMMARY (what it does + input/output format + sample)
+All programs read from stdin (Scanner). Vertices/indices are 0-based unless stated.
+
+=====================================================================
+LAB 1 - SEARCHING & SORTING
+=====================================================================
+
+1) BinarySearch.java
+Does: binary search for a target in an already-sorted ascending array.
+Input : n
+        n integers (sorted)
+        target
+Output: zero-based index of target, or -1 if not found.
+Sample input :
+5
+1 3 5 7 9
+7
+Sample output:
+3
+
+2) MergeSort.java
+Does: sorts an array using merge sort (divide, sort halves, merge). Stable, O(n log n).
+Input : n, then n integers
+Output: "Sorted array:" followed by sorted values
+Sample input :
+5
+5 2 9 1 3
+Sample output:
+Sorted array: 1 2 3 5 9
+
+3) QuickSort.java
+Does: sorts an array using quick sort (last element as pivot). Printed as "colors".
+Input : n, then n integers
+Output: "Sorted colors:" followed by sorted values
+Sample input :
+5
+2 0 1 2 0
+Sample output:
+Sorted colors: 0 0 1 2 2
+
+=====================================================================
+LAB 2 - PRIM'S AND KRUSKAL'S (Minimum Spanning Tree)
+=====================================================================
+
+4) Prim.java
+Does: MST using Prim's algorithm on an adjacency matrix, starting from vertex 0.
+Input : n, then n x n weight matrix (0 = no edge)
+Output: each MST edge as "parent - child : weight", then "MST cost: X".
+        If graph is disconnected: "Graph is disconnected; MST does not exist."
+Note  : a real edge of weight 0 is treated as "no edge".
+Sample input :
+4
+0 2 0 6
+2 0 3 8
+0 3 0 0
+6 8 0 0
+Sample output:
+0 - 1 : 2
+1 - 2 : 3
+0 - 3 : 6
+MST cost: 11
+
+5) Kruskal.java
+Does: MST using Kruskal's algorithm (sort edges + union-find / DSU).
+Input : n m, then m lines "u v weight"
+Output: chosen edges "u - v : weight" (in increasing weight order), then "MST cost: X".
+        If disconnected: "Graph is disconnected; MST does not exist."
+Sample input :
+4 5
+0 1 10
+0 2 6
+0 3 5
+1 3 15
+2 3 4
+Sample output:
+2 - 3 : 4
+0 - 3 : 5
+0 - 1 : 10
+MST cost: 19
+
+=====================================================================
+LAB 3 - DIJKSTRA, WARSHALL & FLOYD
+=====================================================================
+
+6) Dijkstra.java
+Does: single-source shortest paths (non-negative weights), adjacency matrix.
+Input : n, then n x n matrix (0 = no edge), then source vertex
+Output: "Distance to i: d" for each vertex (INF if unreachable)
+Sample input :
+4
+0 4 1 0
+4 0 2 5
+1 2 0 8
+0 5 8 0
+0
+Sample output:
+Distance to 0: 0
+Distance to 1: 3
+Distance to 2: 1
+Distance to 3: 8
+
+7) Warshall.java
+Does: transitive closure (reachability between every pair) of a directed graph.
+Input : n, then n x n 0/1 matrix
+Output: "Transitive closure:" then the n x n 0/1 closure matrix
+Sample input :
+3
+0 1 0
+0 0 1
+0 0 0
+Sample output:
+Transitive closure:
+0 1 1
+0 0 1
+0 0 0
+
+8) FloydWarshall.java
+Does: all-pairs shortest paths.
+Input : n, then n x n weight matrix. Use 999999 for "no edge".
+Output: "All-pairs shortest distances:" then n x n matrix (INF if unreachable)
+Sample input :
+3
+0 4 999999
+999999 0 2
+3 999999 0
+Sample output:
+All-pairs shortest distances:
+0 4 6
+5 0 2
+3 7 0
+
+=====================================================================
+LAB 4 - MATRIX CHAIN & LCS
+=====================================================================
+
+9) MatrixChainMultiplication.java
+Does: minimum number of scalar multiplications to multiply a chain of matrices (DP).
+Input : n (number of matrices), then n+1 dimensions p[0..n]
+        (matrix i has size p[i-1] x p[i])
+Output: "Minimum multiplication cost: X"
+Sample input :
+3
+10 20 30 40
+Sample output:
+Minimum multiplication cost: 18000
+
+10) LCS.java
+Does: finds ALL longest common subsequences of two strings (DP + backtracking), sorted
+      alphabetically, plus the LCS length.
+Input : string 1 (line), string 2 (line)
+Output: each distinct LCS on its own line, then "LCS length: X"
+        (prints "(empty subsequence)" if LCS is empty)
+Sample input :
+ABCD
+ACBD
+Sample output:
+ABD
+ACD
+LCS length: 3
+
+=====================================================================
+LAB 5 - OPTIMAL BST
+=====================================================================
+
+11) OptimalBST.java
+Does: builds optimal binary search tree (min weighted search cost) with DP.
+Input : n
+        n keys (must be in sorted order)
+        n frequencies
+Output: "Minimum cost= X" and the preorder traversal of the optimal tree.
+Sample input :
+3
+10 20 30
+34 8 50
+Sample output:
+Minimum cost= 142
+Preorder traversal:
+30 10 20
+
+=====================================================================
+LAB 6 - TSP (DP)
+=====================================================================
+
+12) TSP.java
+Does: Travelling Salesman Problem using bitmask DP; start/end at city 1.
+Input : n, then n x n cost matrix
+Output: "Shortest Path: ..." (cities 1-based, returns to 1) and "Minimum cost is X"
+Sample input :
+4
+0 10 15 20
+10 0 35 25
+15 35 0 30
+20 25 30 0
+Sample output:
+Shortest Path: 1 2 4 3 1
+Minimum cost is 80
+
+=====================================================================
+LAB 7 - MAX FLOW & MATCHING
+=====================================================================
+
+13) MaxFlow.java
+Does: maximum flow using Edmonds-Karp (BFS augmenting paths) on a capacity matrix.
+Input : n, then n x n capacity matrix, then source and sink (0-based)
+Output: "Maximum Flow: X"
+Sample input :
+4
+0 3 2 0
+0 0 1 2
+0 0 0 2
+0 0 0 0
+0 3
+Sample output:
+Maximum Flow: 4
+
+14) GaleShapley.java
+Does: stable matching between n players and n teams (players propose).
+Input : n
+        n lines: each player's preference list of teams (1-based)
+        n lines: each team's preference list of players (1-based)
+Output: "Player i - Team j" for every player, then "First-Choice Matches: X"
+Sample input :
+3
+1 2 3
+1 2 3
+2 1 3
+2 1 3
+1 2 3
+1 2 3
+Sample output:
+Player 1 - Team 2
+Player 2 - Team 1
+Player 3 - Team 3
+First-Choice Matches: 1
+
+15) KuhnMatching.java
+Does: maximum bipartite matching using Kuhn's augmenting-path algorithm.
+Input : left right
+        for each left vertex: k followed by k right vertices it connects to (1-based)
+Output: "Maximum Matching: X" then "Left a - Right b" for each matched pair
+Sample input :
+3 3
+2 1 2
+1 1
+2 2 3
+Sample output:
+Maximum Matching: 3
+Left 2 - Right 1
+Left 1 - Right 2
+Left 3 - Right 3
+
+=====================================================================
+LAB 8 - N-QUEENS & SUBSET SUM
+=====================================================================
+
+16) NQueens.java
+Does: counts all N-Queens solutions (backtracking) and prints the first one as a 0/1 board.
+Input : n
+Output: first solution board (1 = queen), then "Total Solutions: X"
+        or "No solution found."
+Sample input :
+4
+Sample output:
+0 1 0 0
+0 0 0 1
+1 0 0 0
+0 0 1 0
+Total Solutions: 2
+
+17) SubsetSum.java
+Does: prints every subset of the array that adds up to the target (include/exclude recursion).
+Input : n, then n integers, then target
+Output: each matching subset like [2, 6], then "Number of matching subsets: X"
+Sample input :
+5
+2 3 5 6 8
+8
+EXPECTED output (correct):
+[2, 6]
+[3, 5]
+[8]
+Number of matching subsets: 3
+
+!! BUG IN CURRENT CODE: it prints each subset more than once (it re-checks the sum
+   on the "exclude" branch). Current code gives:
+[2, 6]
+[2, 6]
+[3, 5]
+[3, 5]
+[3, 5]
+[8]
+Number of matching subsets: 6
+
+FIX - replace the search method with this (check only when all elements are decided):
+    static void search(int i, int sum, int size) {
+        if (i == n) {
+            if (sum == target) {
+                count++;
+                System.out.print("[");
+                for (int j = 0; j < size; j++)
+                    System.out.print((j == 0 ? "" : ", ") + chosen[j]);
+                System.out.println("]");
+            }
+            return;
+        }
+        chosen[size] = a[i];
+        search(i + 1, sum + a[i], size + 1);
+        search(i + 1, sum, size);
+    }
+
+18) BoundedSubsetGenerator.java
+Does: generates all subsets with at most "limit" elements (backtracking), including empty set.
+Input : n limit
+        n integers
+Output: one subset per line like [1, 2]
+Sample input :
+3 2
+1 2 3
+Sample output:
+[]
+[1]
+[1, 2]
+[1, 3]
+[2]
+[2, 3]
+[3]
+
+=====================================================================
+LAB 9 - GRAPH COLORING
+=====================================================================
+
+19) GraphColoring.java
+Does: finds the chromatic number (min colors for vertices) by backtracking, and the size
+      of the largest group of same-colored vertices.
+Input : V, then V x V adjacency matrix (0/1)
+Output: "Chromatic Number: X" and "Largest Group Size: Y"
+Sample input :
+4
+0 1 1 0
+1 0 1 0
+1 1 0 1
+0 0 1 0
+Sample output:
+Chromatic Number: 3
+Largest Group Size: 2
+
+20) EdgeColoring.java
+Does: finds the edge chromatic number (min colors so no two edges sharing a vertex have
+      the same color) by backtracking.
+Input : V E, then E lines "u v"
+Output: "Edge Chromatic Number: X", then each edge "u v : color"
+Sample input :
+4 3
+0 1
+0 2
+0 3
+Sample output:
+Edge Chromatic Number: 3
+0 1 : 1
+0 2 : 2
+0 3 : 3
+
+=====================================================================
+LAB 10 - PUZZLE & ASSIGNMENT PROBLEM
+=====================================================================
+
+21) Puzzle15Compare.java
+Does: 15-puzzle. Finds shortest number of moves from a main board to two other boards
+      (IDA* search with misplaced-tiles heuristic) and says which board is closer.
+      -1 means unreachable. Hard boards can take very long.
+Input : three 4x4 boards (16 numbers each): main, board 1, board 2. Use 0 for blank.
+Output: "Moves to Board 1: a", "Moves to Board 2: b", then which is closer.
+Sample input :
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 14 15 0
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 14 0 15
+1 2 3 4
+5 6 7 8
+9 10 11 12
+13 0 14 15
+Sample output:
+Moves to Board 1: 1
+Moves to Board 2: 2
+Board 1 is closer
+
+22) CountingAssignment.java
+Does: assignment problem (n workers to n jobs, min total cost) with branch & bound;
+      also counts how many different assignments reach that minimum.
+Input : n, then n x n cost matrix
+Output: "Minimum Cost: X" and "Optimal Assignments: Y"
+Sample input :
+3
+1 2 3
+1 2 3
+1 2 3
+Sample output:
+Minimum Cost: 6
+Optimal Assignments: 6
+
+=====================================================================
+LAB 11 - KNAPSACK & ASSIGNMENT PROBLEM
+=====================================================================
+
+23) LimitedCountKnapsackSolver.java
+Does: 0/1 knapsack where you may take at most maxItems items (branch & bound).
+      Weights must be positive.
+Input : n capacity maxItems
+        n weights
+        n values
+Output: maximum profit
+Sample input :
+4 10 2
+5 4 6 3
+10 40 30 50
+Sample output:
+90
+
+24) ProfitAssignmentSolver.java
+Does: assignment problem maximizing total profit (branch & bound).
+Input : n, then n x n profit matrix
+Output: maximum total profit
+Sample input :
+3
+9 2 7
+6 4 3
+5 8 1
+Sample output:
+21
+
+=====================================================================
+Samples hand-traced, not run on a machine. Run each once to confirm.
+=====================================================================
